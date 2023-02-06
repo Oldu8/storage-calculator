@@ -144,6 +144,8 @@ body {
     align-items: flex-start;
   }
 }
+// I know that using the !importer keyword is a bad approach for development,
+// but unfortunately I have no options left for how to implement my idea and override the chart.js styles
 
 #myChartLaptop.myChartLaptop {
   max-width: 80%;

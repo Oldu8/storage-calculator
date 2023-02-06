@@ -1,6 +1,13 @@
 import { providersInfo } from './data'
 const ctx = document.getElementById('myChartLaptop').getContext('2d');
 
+//Here I deliberately create 2 graphs to implement the transition from one type to another.
+// Unfortunately, the normal way to change the type of chart does not work,
+// even on the official YouTube channel chart.js this function does not work specifically with these two types of charts.
+// I mean this approach: myChartLaptop.config.type = isLaptop ? 'horizontalBar' : 'bar'
+// So I had to find another way.
+// If you change the horizontalBar chart to a 'line', then it will change to the 'bar' char with approach myChartLaptop.config.type = isLaptop ? 'horizontalBar' : 'bar'
+
 export const myChartLaptop = new Chart(ctx, {
 	type: 'horizontalBar',
 	data: {

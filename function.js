@@ -4,18 +4,17 @@ import { myChartLaptop, myChartMobile } from "./chart";
 const bunnyStorageType = document.getElementById('bunnyStorage');
 const scaleWayOptionType = document.getElementById('scalewayOption');
 
-
-
 const resultObj = {};
 
-const updateChartType = () => {
-	const isLaptop = window.matchMedia('(min-width: 1024px)').matches;
-	// myChartLaptop.config.type = isLaptop ? 'horizontalBar' : 'bar'
-	console.log(myChartLaptop.config.type)
-}
+// Here I was trying to switch chart type like it was showed on youtube chanel,
+// but it's not working with horizontalBar and bar
 
-
-window.addEventListener('resize', updateChartType);
+// const updateChartType = () => {
+// 	const isLaptop = window.matchMedia('(min-width: 1024px)').matches;
+// 	// myChartLaptop.config.type = isLaptop ? 'horizontalBar' : 'bar'
+// 	console.log(myChartLaptop.config.type)
+// }
+// window.addEventListener('resize', updateChartType);
 
 export function calcPrice(providerName, provider, storageValue, transferValue) {
 	const transfer = transferValue.textContent
