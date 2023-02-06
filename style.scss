@@ -1,0 +1,159 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: rgb(224, 218, 210);
+}
+
+#app {
+  max-width: 1280px;
+  text-align: center;
+}
+
+.wrapper {
+  margin: 0 auto;
+  background-color: white;
+  min-width: 50%;
+  /* max-width: 70%; */
+  padding: 2rem;
+  border: 3px solid rgb(28, 26, 26);
+  border-radius: 25px;
+  box-sizing: border-box;
+  box-shadow: 12px 12px 2px 1px rgba(24, 24, 116, 0.2);
+  @media screen and (max-width: 768px) {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  @media screen and (max-width: 425px) {
+    min-height: 90vh;
+    box-shadow: none;
+  }
+}
+
+#inputStorage,
+#inputTransfer {
+  -webkit-appearance: none;
+  margin-right: 15px;
+  width: 300px;
+  height: 7px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  background-image: linear-gradient(#080808, #3a3737);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+#inputStorage::-webkit-slider-thumb,
+#inputTransfer::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 7px;
+  border-radius: 10%;
+  background: #f66834;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background 0.3s ease-in-out;
+}
+#inputStorage::-webkit-slider-runnable-track,
+#inputTransfer::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+.valueBox {
+  background-color: rgb(169, 167, 167, 0.5);
+  max-width: 75px;
+  padding: 5px 2px;
+  margin: 10px auto;
+}
+
+#myChart {
+  width: 500px;
+}
+.heroBlock {
+  display: flex;
+  padding: 0 10px;
+  @media screen and (max-width: 768px) {
+    font-size: 0.8rem;
+    padding: 0;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
+
+.item {
+  min-height: 40px;
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  @media screen and (max-width: 768px) {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media screen and (max-width: 425px) {
+    font-size: 0.7rem;
+    max-width: 70px;
+  }
+}
+#scalewayOption,
+#bunnyStorage {
+  @media screen and (max-width: 425px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.storage-type,
+.option-type {
+  font-size: 0.8rem;
+  @media screen and (max-width: 768px) {
+    font-size: 0.7rem;
+  }
+}
+.name {
+  margin: 0;
+}
+.price {
+  display: grid;
+  align-items: center;
+  margin-top: 15px;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    padding-bottom: 1rem;
+  }
+  @media screen and (max-width: 425px) {
+    grid-gap: 0px;
+    align-items: flex-start;
+  }
+}
+
+#myChartLaptop.myChartLaptop {
+  max-width: 80%;
+  @media screen and (max-width: 768px) {
+    display: none !important;
+  }
+}
+#myChartMobile.myChartMobile {
+  display: none !important;
+  @media screen and (max-width: 768px) {
+    display: initial !important;
+  }
+}

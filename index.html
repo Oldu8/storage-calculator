@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <section class="wrapper">
+      <div class="heroBlock">
+        <section class="price">
+          <div class="item">
+            <p class="name">backblaze.com</p>
+          </div>
+          <div class="item">
+            <p class="name">bunny.net</p>
+            <div class="storage-type">
+              <form id="bunnyStorage">
+                <input
+                  type="radio"
+                  id="hdd"
+                  name="storageType"
+                  value="HDD"
+                  checked
+                />
+                <label for="hdd">HDD</label>
+                <input type="radio" id="SSD" name="storageType" value="ssd" />
+                <label for="ssd">SSD</label>
+              </form>
+            </div>
+          </div>
+          <div class="item">
+            <p class="name">scaleway.com</p>
+            <div class="option-type">
+              <form id="scalewayOption">
+                <input
+                  type="radio"
+                  id="multi"
+                  name="optionType"
+                  value="multi"
+                  checked
+                />
+                <label for="multi">Multi</label>
+                <input
+                  type="radio"
+                  id="single"
+                  name="optionType"
+                  value="single"
+                />
+                <label for="hdd">Single</label>
+              </form>
+            </div>
+          </div>
+          <div class="item">
+            <p class="name">vultr.com</p>
+          </div>
+        </section>
+        <canvas
+          id="myChartLaptop"
+          class="myChartLaptop"
+          width="280"
+          height="100"
+        ></canvas>
+        <canvas
+          id="myChartMobile"
+          class="myChartMobile"
+          width="280"
+          height="100"
+        ></canvas>
+      </div>
+      <div id="app"></div>
+    </section>
+    <script type="module" src="/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  </body>
+</html>
