@@ -28,18 +28,19 @@ export function calcPrice(providerName, provider, storageValue, transferValue) {
 			resultObj[providerName] = backblazeResult;
 			break;
 		case "bunny.net":
-			let bunnyStoragePrice = (bunnyStorageType.elements.storageType.value === "HDD") ? provider.storage.hdd.price : provider.storage.ssd.price;
+			const storageType = bunnyStorageType.elements.storageType.value.toLowerCase();
+			let bunnyStoragePrice = provider.storage[storageType].price;
 			let bunnySum = bunnyStoragePrice * storage + (provider.transfer.price * transfer);
 			let bunnyResult = Math.min(bunnySum, provider.maximumPayment).toFixed(2)
 			resultObj[providerName] = bunnyResult
 			break;
 		case "scaleway.com":
-			let scalewayStorage = storage - provider[scaleWayOptionType.elements.optionType.value].storage.free > 0 ? storage - provider[scaleWayOptionType.elements.optionType.value].storage.free : 0
-			let scalewayTransfer = transfer - provider[scaleWayOptionType.elements.optionType.value].transfer.free > 0 ? transfer - provider[scaleWayOptionType.elements.optionType.value].transfer.free : 0
-
-			let scalewayStoragePrice = provider[scaleWayOptionType.elements.optionType.value].storage.price
-			let scalewayTransferPrice = provider[scaleWayOptionType.elements.optionType.value].transfer.price
-			let scalewayResult = (scalewayStoragePrice * scalewayStorage + scalewayTransferPrice * scalewayTransfer).toFixed(2);
+			const optionType = scaleWayOptionType.elements.optionType.value;
+			const scalewayStorage = Math.max(0, storage - provider[optionType].storage.free);
+			const scalewayTransfer = Math.max(0, transfer - provider[optionType].transfer.free);
+			const scalewayStoragePrice = provider[optionType].storage.price
+			const scalewayTransferPrice = provider[optionType].transfer.price
+			const scalewayResult = (scalewayStoragePrice * scalewayStorage + scalewayTransferPrice * scalewayTransfer).toFixed(2);
 			resultObj[providerName] = scalewayResult
 			break;
 		case "vultr.com":
@@ -51,9 +52,13 @@ export function calcPrice(providerName, provider, storageValue, transferValue) {
 		default:
 			break;
 	}
+	updCharts();
+	return;
+}
+
+const updCharts = () => {
 	myChartLaptop.data.datasets[0].data = Object.values(resultObj);
 	myChartLaptop.update();
 	myChartMobile.data.datasets[0].data = Object.values(resultObj);
 	myChartMobile.update();
-	return;
 }
