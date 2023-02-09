@@ -1,10 +1,8 @@
 import { myChartLaptop, myChartMobile } from "./chart";
 
-//buttons
-const bunnyStorageType = document.getElementById('bunnyStorage');
-const scaleWayOptionType = document.getElementById('scalewayOption');
+export const resultObj = {};
+export const resultObj2 = {};
 
-const resultObj = {};
 
 // Here I was trying to switch chart type like it was showed on youtube chanel,
 // but it's not working with horizontalBar and bar
@@ -16,47 +14,43 @@ const resultObj = {};
 // }
 // window.addEventListener('resize', updateChartType);
 
-export function calcPrice(providerName, provider, storageValue, transferValue) {
-	const transfer = transferValue.textContent
-	const storage = storageValue.textContent
+export const calcPric = (providerName, provider, storage, transfer, obj = resultObj) => {
 
-	switch (providerName) {
-		case "backblaze.com":
-			let backblazeSum = provider.storage.price * storage + provider.transfer.price * transfer;
-			backblazeSum = backblazeSum > provider.minimumPayment ? backblazeSum : provider.minimumPayment;
-			let backblazeResult = backblazeSum.toFixed(2)
-			resultObj[providerName] = backblazeResult;
-			break;
-		case "bunny.net":
-			const storageType = bunnyStorageType.elements.storageType.value.toLowerCase();
-			let bunnyStoragePrice = provider.storage[storageType].price;
-			let bunnySum = bunnyStoragePrice * storage + (provider.transfer.price * transfer);
-			let bunnyResult = Math.min(bunnySum, provider.maximumPayment).toFixed(2)
-			resultObj[providerName] = bunnyResult
-			break;
-		case "scaleway.com":
-			const optionType = scaleWayOptionType.elements.optionType.value;
-			const scalewayStorage = Math.max(0, storage - provider[optionType].storage.free);
-			const scalewayTransfer = Math.max(0, transfer - provider[optionType].transfer.free);
-			const scalewayStoragePrice = provider[optionType].storage.price
-			const scalewayTransferPrice = provider[optionType].transfer.price
-			const scalewayResult = (scalewayStoragePrice * scalewayStorage + scalewayTransferPrice * scalewayTransfer).toFixed(2);
-			resultObj[providerName] = scalewayResult
-			break;
-		case "vultr.com":
-			let vultrSum = provider.storage.price * storage + provider.transfer.price * transfer;
-			vultrSum = vultrSum > provider.minimumPayment ? vultrSum : provider.minimumPayment;
-			let vultrResult = vultrSum.toFixed(2)
-			resultObj[providerName] = vultrResult
-			break;
-		default:
-			break;
+	const itemOption = document.getElementById(providerName)?.elements.optionType.value.toLowerCase()
+	const minPayment = provider?.minimumPayment;
+	const maxPayment = provider?.maximumPayment;
+
+	const freeStorage = provider.storage[itemOption]?.free;
+	const freeTransfer = provider.transfer[itemOption]?.free;
+
+
+	const itemStorage = freeStorage ? Math.max(0, storage - provider.storage[itemOption].free) : storage
+	const itemTransfer = freeTransfer ? Math.max(0, transfer - provider.transfer[itemOption].free) : transfer
+
+	const itemStoragePrice = itemOption ? provider.storage[itemOption]?.price : provider.storage.price;
+	const itemTransferPrice = itemOption ? provider.transfer[itemOption]?.price : provider.transfer.price
+	const itemSum = itemStoragePrice * itemStorage + itemTransferPrice * itemTransfer;
+	let itemResult = 0;
+
+	if (minPayment) {
+		itemResult = (itemSum > minPayment ? itemSum : minPayment).toFixed(2)
+
+	} else {
+		itemResult = itemSum.toFixed(2)
 	}
-	updCharts();
+
+	if (maxPayment) {
+		itemResult = Math.min(itemSum, maxPayment).toFixed(2)
+	} else {
+		itemResult = itemResult ? itemResult : itemSum.toFixed(2)
+	}
+	obj[providerName] = itemResult
 	return;
 }
 
-const updCharts = () => {
+export const updCharts = (providerName, provider, storageValue, transferValue) => {
+	calcPric(providerName, provider, storageValue, transferValue, resultObj)
+
 	myChartLaptop.data.datasets[0].data = Object.values(resultObj);
 	myChartLaptop.update();
 	myChartMobile.data.datasets[0].data = Object.values(resultObj);

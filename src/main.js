@@ -1,6 +1,6 @@
 import './style.scss'
 import { providersInfo } from './data'
-import { calcPrice } from './function';
+import { updCharts } from './function';
 
 let scaleMin = 0;
 let scaleMax = 1000;
@@ -27,8 +27,8 @@ const inputTransfer = document.getElementById("inputTransfer");
 const transferValue = document.getElementById("transferValue");
 
 // buttons
-const bunnyStorageType = document.getElementById('bunnyStorage');
-const scaleWayOptionType = document.getElementById('scalewayOption');
+const bunnyStorageType = document.getElementById('bunny.net');
+const scaleWayOptionType = document.getElementById('scaleway.com');
 
 
 // Logic 
@@ -53,7 +53,8 @@ bunnyStorageType.addEventListener("change", (event) => {
 function setPrice() {
   Object.keys(providersInfo).forEach(providerName => {
     const provider = providersInfo[providerName];
-    calcPrice(providerName, provider, storageValue, transferValue)
+    const transfer = transferValue.textContent
+    const storage = storageValue.textContent
+    updCharts(providerName, provider, storage, transfer)
   });
 }
-

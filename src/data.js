@@ -19,28 +19,55 @@ export const providersInfo = {
 			},
 		},
 		transfer: {
-			price: 0.01,
+			hdd: {
+				price: 0.01,
+			},
+			ssd: {
+				price: 0.01,
+			},
 		},
 	},
+	// "scaleway.com": {
+	// 	multi: {
+	// 		storage: {
+	// 			free: 75,
+	// 			price: 0.06,
+	// 		},
+	// 		transfer: {
+	// 			free: 75,
+	// 			price: 0.02,
+	// 		},
+	// 	},
+	// 	single: {
+	// 		storage: {
+	// 			free: 75,
+	// 			price: 0.03,
+	// 		},
+	// 		transfer: {
+	// 			free: 75,
+	// 			price: 0.02,
+	// 		},
+	// 	},
+	// },
 	"scaleway.com": {
-		multi: {
-			storage: {
-				free: 75,
+		storage: {
+			multi: {
 				price: 0.06,
-			},
-			transfer: {
 				free: 75,
-				price: 0.02,
+			},
+			single: {
+				price: 0.03,
+				free: 75,
 			},
 		},
-		single: {
-			storage: {
-				free: 75,
-				price: 0.03,
-			},
-			transfer: {
-				free: 75,
+		transfer: {
+			multi: {
 				price: 0.02,
+				free: 75,
+			},
+			single: {
+				price: 0.02,
+				free: 75,
 			},
 		},
 	},
