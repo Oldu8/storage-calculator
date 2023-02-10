@@ -27,28 +27,6 @@ export const providersInfo = {
 			},
 		},
 	},
-	// "scaleway.com": {
-	// 	multi: {
-	// 		storage: {
-	// 			free: 75,
-	// 			price: 0.06,
-	// 		},
-	// 		transfer: {
-	// 			free: 75,
-	// 			price: 0.02,
-	// 		},
-	// 	},
-	// 	single: {
-	// 		storage: {
-	// 			free: 75,
-	// 			price: 0.03,
-	// 		},
-	// 		transfer: {
-	// 			free: 75,
-	// 			price: 0.02,
-	// 		},
-	// 	},
-	// },
 	"scaleway.com": {
 		storage: {
 			multi: {

@@ -55,6 +55,7 @@ function setPrice() {
     const provider = providersInfo[providerName];
     const transfer = transferValue.textContent
     const storage = storageValue.textContent
-    updCharts(providerName, provider, storage, transfer)
+    const itemOption = document.getElementById(providerName)?.elements.optionType.value.toLowerCase()
+    updCharts(providerName, provider, storage, transfer, itemOption)
   });
 }
